@@ -1,0 +1,947 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RoadMate AutoCare | Car Service & Booking</title>
+<meta name="description" content="Book car servicing, repairs, detailing and roadside assistance with RoadMate AutoCare.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#102b46;
+  --blue:#176bce;
+  --teal:#13b8a6;
+  --light:#f2f8fc;
+  --ink:#172638;
+  --muted:#687789;
+  --white:#fff;
+  --border:#e2ebf2;
+  --shadow:0 15px 40px rgba(16,43,70,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:"DM Sans",sans-serif;color:var(--ink);background:white;line-height:1.6}
+button,input,select,textarea{font:inherit}
+button,a{-webkit-tap-highlight-color:transparent}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer}
+img{max-width:100%;display:block}
+.container{width:min(1280px,92%);margin:auto}
+.topbar{background:var(--navy);color:#e4f3ff;font-size:12px;padding:8px 0}
+.topbar .container{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(15px);border-bottom:1px solid var(--border)}
+.nav{height:80px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.logo{display:flex;align-items:center;gap:10px;font-family:Manrope,sans-serif;font-size:23px;font-weight:800;color:var(--navy);white-space:nowrap}
+.logo-icon{height:45px;width:45px;border-radius:14px;background:var(--navy);color:white;display:grid;place-items:center;font-size:25px}
+.logo span span{color:var(--teal)}
+.navlinks{display:flex;align-items:center;gap:25px}
+.navlinks a{font-size:14px;font-weight:600;color:#435264;transition:.2s}
+.navlinks a:hover,.navlinks a.active{color:var(--blue)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:11px;padding:14px 22px;font-weight:800;transition:.25s;cursor:pointer}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--blue);color:white;box-shadow:0 8px 20px #176bce30}
+.btn-primary:hover{background:#0e56a9}
+.btn-teal{background:var(--teal);color:var(--navy)}
+.btn-outline{border:1px solid #cbd9e6;background:white;color:var(--navy)}
+.btn-white{background:white;color:var(--navy)}
+.menu-btn{display:none;background:#edf5fc;border:0;padding:10px;border-radius:10px;font-size:23px;color:var(--navy)}
+.page{display:none;min-height:70vh}
+.page.active{display:block;animation:appear .35s ease}
+@keyframes appear{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hero{background:radial-gradient(ellipse at 90% 20%,#c8f3ec 0,transparent 35%),linear-gradient(120deg,#f0f7ff,#fff 58%,#eaf9f7);padding:70px 0 55px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.02fr .98fr;align-items:center;gap:45px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:#e3f8f5;border:1px solid #b8eee4;border-radius:50px;color:#087d71;font-size:13px;font-weight:800;margin-bottom:22px}
+h1,h2,h3{font-family:Manrope,sans-serif;line-height:1.15}
+h1{font-size:clamp(40px,5.1vw,67px);letter-spacing:-2.7px;color:var(--navy);margin-bottom:20px}
+h1 em{font-style:normal;color:var(--blue)}
+.hero p{font-size:17px;color:var(--muted);max-width:570px;line-height:1.8}
+.hero-actions{display:flex;gap:13px;flex-wrap:wrap;margin:28px 0}
+.hero-trust{display:flex;gap:22px;flex-wrap:wrap;font-size:13px;font-weight:700;color:#4d6174}
+.hero-trust span{display:flex;gap:7px;align-items:center}
+.hero-image{position:relative}
+.hero-image img{width:100%;height:450px;object-fit:cover;border-radius:30px;box-shadow:0 24px 60px #102b4620}
+.float-card{position:absolute;background:white;padding:15px 19px;border-radius:15px;box-shadow:var(--shadow);font-size:13px;font-weight:800}
+.float-card small{display:block;color:var(--muted);font-weight:500}
+.float-one{left:-23px;bottom:30px}
+.float-two{right:-12px;top:24px}
+.float-icon{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:10px;background:#dff8f2;color:#087d71;margin-right:8px}
+.section{padding:75px 0}
+.section-tint{background:var(--light)}
+.section-head{text-align:center;max-width:700px;margin:0 auto 38px}
+.section-head .eyebrow{margin-bottom:15px}
+.section-head h2{font-size:clamp(29px,3.8vw,43px);letter-spacing:-1.4px;color:var(--navy);margin-bottom:13px}
+.section-head p{color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:30px 0}
+.stat{padding:23px;border:1px solid var(--border);border-radius:17px;background:white;text-align:center}
+.stat strong{font-family:Manrope,sans-serif;font-size:31px;color:var(--blue);display:block}
+.stat span{font-size:13px;color:var(--muted)}
+.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.service-card{border:1px solid var(--border);border-radius:21px;background:white;overflow:hidden;transition:.25s}
+.service-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:#b5d8fa}
+.service-top{padding:20px 22px;background:#eaf4ff;display:flex;justify-content:space-between;align-items:center}
+.service-icon{height:68px;width:88px;display:block;object-fit:cover;border-radius:12px;background:#fff;border:1px solid var(--border)}
+.price{font-weight:800;color:var(--blue);background:white;padding:6px 12px;border-radius:30px;font-size:14px}
+.service-body{padding:22px}
+.service-body h3{font-size:19px;margin-bottom:10px;color:var(--navy)}
+.service-body p{font-size:14px;color:var(--muted);min-height:48px}
+.service-meta{display:flex;justify-content:space-between;gap:8px;margin:18px 0;color:#63748a;font-size:12px}
+.service-body .btn{width:100%;padding:12px}
+.service-card:nth-child(3n+2) .service-top{background:#e4f9f2}
+.service-card:nth-child(3n) .service-top{background:#f2edff}
+.service-card:nth-child(4n) .service-top{background:#fff4e6}
+.brand-grid{display:flex;gap:18px;overflow:hidden;padding:12px 0 22px;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.brand-track{display:flex;gap:18px;width:max-content;animation:brandSlide 28s linear infinite}
+.brand-track:hover{animation-play-state:paused}
+.brand{width:190px;min-width:190px;height:112px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:16px;border:1px solid var(--border);border-radius:16px;text-align:center;background:white;font-weight:800;color:var(--navy);font-size:15px;box-shadow:0 8px 20px #102b4610}
+.brand-mark{font-family:Manrope,sans-serif;font-size:25px;font-weight:900;letter-spacing:-1px;color:var(--blue)}
+@keyframes brandSlide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.brand{padding:20px 8px;border:1px solid var(--border);border-radius:14px;text-align:center;background:white;font-weight:800;color:var(--navy);font-size:14px}
+.brand span{display:block;font-size:26px;margin-bottom:7px}
+.feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.feature{padding:25px;border-radius:17px;background:white;border:1px solid var(--border)}
+.feature .symbol{font-size:28px;margin-bottom:12px}
+.feature h3{font-size:16px;margin-bottom:7px}
+.feature p{font-size:13px;color:var(--muted)}
+.cta{background:var(--navy);color:white;border-radius:25px;padding:43px;display:flex;align-items:center;justify-content:space-between;gap:25px}
+.cta h2{font-size:30px;margin-bottom:10px}
+.cta p{color:#cfdeeb}
+.testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.quote{border:1px solid var(--border);padding:25px;border-radius:19px;background:white}
+.stars{color:#e5a62b;letter-spacing:3px;margin-bottom:12px}
+.quote p{color:#536578;font-size:14px}
+.quote strong{display:block;margin-top:18px;color:var(--navy)}
+.quote small{color:var(--muted)}
+.inner-hero{padding:65px 0;background:linear-gradient(110deg,#edf6ff,#e9faf6)}
+.inner-hero h1{font-size:clamp(35px,4.5vw,54px);letter-spacing:-1.5px;margin-bottom:14px}
+.inner-hero p{color:var(--muted);max-width:680px}
+.breadcrumb{font-size:13px;color:var(--blue);font-weight:700;margin-bottom:17px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:40px}
+.about-grid img{width:100%;height:370px;object-fit:cover;border-radius:23px}
+.about-grid h2{font-size:35px;color:var(--navy);margin-bottom:18px}
+.about-grid p{color:var(--muted);margin-bottom:14px}
+.check-list{list-style:none;margin:20px 0}
+.check-list li{margin:10px 0;font-weight:700}
+.check-list li::before{content:"✓";color:#079c83;font-weight:900;margin-right:10px}
+.form-layout{display:grid;grid-template-columns:1fr 340px;gap:25px;align-items:start}
+.form-card,.side-card{padding:30px;background:white;border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow)}
+.form-card h2{font-size:26px;color:var(--navy);margin-bottom:8px}
+.form-card>p{font-size:14px;color:var(--muted);margin-bottom:25px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{font-size:13px;font-weight:800;color:#33485c}
+.field input,.field select,.field textarea{width:100%;padding:13px 14px;border:1px solid #dbe5ee;border-radius:10px;outline:none;background:#fbfdff;color:var(--ink)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #176bce15}
+.field textarea{min-height:100px;resize:vertical}
+.form-submit{width:100%;margin-top:22px}
+.side-card{background:var(--navy);color:white;box-shadow:none;margin-bottom:18px}
+.side-card h3{font-size:21px;margin-bottom:15px}
+.side-card p{font-size:14px;color:#d3e0ec;margin-bottom:13px}
+.side-card.light{background:#e8f8f4;color:var(--navy)}
+.side-card.light p{color:var(--muted)}
+.notice{background:#e7f7f1;color:#087b65;padding:15px;border-radius:12px;font-size:14px;margin-top:20px;display:none}
+.notice.show{display:block}
+.notice h3{margin-bottom:8px}
+.notice p{margin-bottom:6px}
+.notice .btn{margin-top:12px}
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:30px}
+.contact-item{padding:22px;border:1px solid var(--border);border-radius:16px;margin-bottom:14px}
+.contact-item h3{font-size:17px;margin-bottom:6px}
+.contact-item p{font-size:14px;color:var(--muted)}
+.assist-box{background:var(--navy);color:white;padding:30px;border-radius:20px}
+.assist-box h2{font-size:28px;margin-bottom:12px}
+.assist-box p{color:#d3e0ec;margin-bottom:22px}
+.assist-options{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:25px}
+.assist-option{padding:25px;border:1px solid var(--border);border-radius:17px;background:white}
+.assist-option span{font-size:29px}
+.assist-option h3{font-size:17px;margin:12px 0}
+.assist-option p{font-size:13px;color:var(--muted);margin-bottom:17px}
+.faq{max-width:800px;margin:auto}
+.faq details{padding:20px;border-bottom:1px solid var(--border)}
+.faq summary{font-weight:800;cursor:pointer;color:var(--navy)}
+.faq details p{padding-top:13px;color:var(--muted);font-size:14px}
+footer{background:#0b1f34;color:white;padding:50px 0 20px}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px}
+footer .logo{color:white;margin-bottom:15px}
+footer p{font-size:13px;color:#b8c9d8;max-width:330px}
+footer h3{font-size:15px;margin-bottom:15px}
+footer .footer-links{display:grid;gap:10px;font-size:13px;color:#c5d4e1}
+footer .footer-links a:hover{color:#5ce2d0}
+.footer-bottom{border-top:1px solid #ffffff20;margin-top:35px;padding-top:18px;color:#9eb1c3;font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.chat-btn{position:fixed;right:25px;bottom:25px;z-index:45;background:var(--teal);color:var(--navy);height:57px;width:57px;border:0;border-radius:50%;font-size:24px;box-shadow:0 8px 25px #13b8a650}
+.chat-panel{position:fixed;right:25px;bottom:92px;width:min(340px,calc(100vw - 35px));background:white;box-shadow:0 15px 55px #102b4630;border:1px solid var(--border);border-radius:18px;z-index:45;display:none;overflow:hidden}
+.chat-panel.open{display:block}
+.chat-head{background:var(--navy);color:white;padding:18px;font-weight:800}
+.chat-body{padding:18px}
+.chat-body p{font-size:14px;color:var(--muted);margin-bottom:12px}
+.chat-body a{display:block;padding:10px;background:var(--light);border-radius:9px;margin-top:8px;font-weight:700;font-size:13px}
+.empty-state{padding:25px;background:var(--light);border-radius:15px}
+@media(max-width:1050px){
+ .navlinks{gap:13px}.navlinks a{font-size:12px}
+ .nav>.btn{padding:12px}
+ .hero-grid{gap:28px}
+ .hero-image img{height:380px}
+ .service-grid{grid-template-columns:repeat(2,1fr)}
+ .brand-grid{grid-template-columns:repeat(3,1fr)}
+ .feature-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:760px){
+ .topbar .container{justify-content:center;text-align:center}
+ .nav{height:69px}.logo{font-size:19px}.logo-icon{height:39px;width:39px}
+ .menu-btn{display:block}
+ .navlinks{display:none;position:absolute;top:69px;left:0;right:0;background:white;padding:18px 5%;border-bottom:1px solid var(--border);box-shadow:var(--shadow);flex-direction:column;align-items:stretch;gap:0}
+ .navlinks.open{display:flex}
+ .navlinks a{padding:12px 0;font-size:15px;border-bottom:1px solid #f0f3f6}
+ .nav>.btn{display:none}
+ .hero{padding:45px 0}
+ .hero-grid,.about-grid,.form-layout,.contact-grid{grid-template-columns:1fr}
+ h1{font-size:43px;letter-spacing:-1.6px}
+ .hero p{font-size:15px}
+ .hero-image img{height:300px;border-radius:20px}
+ .float-one{left:8px;bottom:12px}.float-two{right:8px;top:10px}
+ .section{padding:53px 0}
+ .stats{grid-template-columns:repeat(2,1fr);gap:10px}
+ .stat{padding:18px 8px}.stat strong{font-size:25px}
+ .service-grid,.testimonial-grid{grid-template-columns:1fr}
+ .service-body p{min-height:0}
+ .brand-grid{grid-template-columns:repeat(2,1fr)}
+ .feature-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+ .feature{padding:17px}
+ .cta{padding:28px 22px;align-items:flex-start;flex-direction:column}
+ .cta h2{font-size:25px}
+ .footer-grid{grid-template-columns:repeat(2,1fr)}
+ .form-card,.side-card{padding:21px}
+ .form-grid{grid-template-columns:1fr}
+ .field.full{grid-column:auto}
+ .assist-options{grid-template-columns:1fr}
+ .about-grid img{height:280px}
+}
+@media(max-width:400px){
+ .hero-actions{flex-direction:column}
+ .hero-actions .btn{width:100%}
+ .feature-grid{grid-template-columns:1fr}
+ .footer-grid{grid-template-columns:1fr}
+}
+
+/* RoadMate visual refinements */
+.topbar{display:none!important}
+.logo.roadmate-wordmark{display:inline-flex;gap:0;font-size:30px;letter-spacing:-1.7px;font-weight:900;text-transform:none;color:var(--navy);line-height:1}
+.logo.roadmate-wordmark span{color:var(--teal)}
+.footer-wordmark{color:#fff!important;margin-bottom:18px}
+.footer-wordmark span{color:#43d6c5!important}
+.service-top{min-height:132px;gap:15px;background:#eef6ff}
+.service-icon{width:100%;height:145px;object-fit:cover;border-radius:12px;border:0;transition:transform .45s ease,filter .45s ease}
+.service-card:hover .service-icon{transform:scale(1.035);filter:saturate(1.08)}
+.service-top{position:relative;padding:12px;align-items:flex-start}
+.service-top .price{position:absolute;right:20px;bottom:20px;box-shadow:0 5px 16px #102b4612}
+.brand-grid{display:block;overflow:hidden;position:relative}
+.brand-grid:before,.brand-grid:after{content:"";position:absolute;z-index:2;top:0;bottom:18px;width:65px;pointer-events:none}
+.brand-grid:before{left:0;background:linear-gradient(90deg,var(--light),transparent)}
+.brand-grid:after{right:0;background:linear-gradient(270deg,var(--light),transparent)}
+.brand-track{display:flex;gap:18px;width:max-content;animation:brandSlide 32s linear infinite;padding:12px 0 22px}
+.brand-track:hover{animation-play-state:paused}
+.brand{flex:0 0 190px;width:190px;min-width:190px;height:112px;padding:15px 10px;border:1px solid var(--border);border-radius:16px;text-align:center;background:#fff;font-weight:800;color:var(--navy);font-size:15px;box-shadow:0 8px 20px #102b4610;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;transition:transform .3s,box-shadow .3s}
+.brand:hover{transform:translateY(-5px);box-shadow:0 15px 30px #102b4620}
+.brand .brand-mark{font-size:20px;line-height:1.2;letter-spacing:-.4px;color:var(--brand-color,var(--navy))}
+.brand small{font-size:9px;letter-spacing:1.4px;color:#8090a1}
+.brand-maruti{--brand-color:#1d4e9e}.brand-hyundai{--brand-color:#003b70}.brand-tata{--brand-color:#1766b1}.brand-honda{--brand-color:#c92332}.brand-toyota{--brand-color:#d71920}.brand-mahindra{--brand-color:#c3222a}.brand-kia{--brand-color:#111}.brand-mg{--brand-color:#bd2026}.brand-bmw{--brand-color:#1765a9}.brand-mercedes{--brand-color:#333}
+.footer-contact{display:grid;gap:8px;margin-top:18px;font-size:12px;color:#b8c9d8}
+.footer-contact a:hover{color:#43d6c5}
+.feature .symbol{height:55px;width:55px;display:grid;place-items:center;border-radius:15px;background:#e4f8f4;color:#087d71;font-size:27px;font-weight:800}
+.float-icon{font-size:20px}
+@media(max-width:760px){.logo.roadmate-wordmark{font-size:26px}.service-icon{height:130px}.brand{flex-basis:160px;width:160px;min-width:160px}}
+
+
+.brand{gap:9px}
+.brand .brand-logo{display:block;width:auto;max-width:138px;height:43px;object-fit:contain}
+.brand .brand-mark{font-size:14px;line-height:1.2;letter-spacing:.1px;color:var(--brand-color,var(--navy));font-weight:800}
+.brand small{display:none}
+@media(max-width:760px){.brand .brand-logo{max-width:118px;height:38px}.brand .brand-mark{font-size:12px}}
+
+
+/* RoadMate visual enhancement: animated, photo-backed homepage and compact service cards */
+.hero{
+ position:relative;isolation:isolate;
+ background:linear-gradient(90deg,rgba(245,250,255,.96) 0%,rgba(245,250,255,.88) 48%,rgba(235,249,247,.68) 100%),url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=2000&q=90') center/cover no-repeat;
+}
+.hero:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 82% 20%,rgba(19,184,166,.18),transparent 28%),linear-gradient(120deg,transparent 50%,rgba(23,107,206,.08));animation:heroGlow 8s ease-in-out infinite alternate}
+.hero-grid>div:first-child{animation:slideInLeft .9s cubic-bezier(.2,.8,.2,1) both}
+.hero-image{animation:slideInRight 1s cubic-bezier(.2,.8,.2,1) both}
+.hero-image img{animation:photoFloat 6s ease-in-out infinite;transition:transform .6s,box-shadow .6s}
+.hero-image:hover img{transform:scale(1.025);box-shadow:0 30px 75px #102b4640}
+.float-card{animation:floatBob 4s ease-in-out infinite}
+.float-two{animation-delay:1s}
+.eyebrow{animation:softPulse 3.5s ease-in-out infinite}
+.btn{position:relative;overflow:hidden}
+.btn:after{content:"";position:absolute;top:-60%;left:-80%;width:45%;height:220%;transform:rotate(25deg);background:rgba(255,255,255,.28);transition:left .65s}
+.btn:hover:after{left:140%}
+.section-head{animation:fadeLift .8s both}
+.service-grid .service-card{animation:fadeLift .7s both;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}
+.service-grid .service-card:nth-child(2){animation-delay:.08s}.service-grid .service-card:nth-child(3){animation-delay:.16s}.service-grid .service-card:nth-child(4){animation-delay:.24s}.service-grid .service-card:nth-child(5){animation-delay:.32s}.service-grid .service-card:nth-child(6){animation-delay:.4s}
+.service-card:hover{transform:translateY(-8px) scale(1.015);box-shadow:0 20px 44px rgba(16,43,70,.14);border-color:#9acaf5}
+.service-top{padding:12px 14px;gap:10px}
+.service-icon{height:56px;width:76px;border-radius:10px;transition:transform .35s,filter .35s}
+.service-card:hover .service-icon{transform:scale(1.07);filter:saturate(1.12)}
+.price{padding:5px 10px;font-size:12px;white-space:nowrap}
+.service-body{padding:14px 16px 16px}
+.service-body h3{font-size:16px;margin-bottom:5px}
+.service-body p{font-size:12px;line-height:1.5;min-height:36px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.service-meta{margin:10px 0;font-size:11px}
+.service-body .btn{padding:9px 12px;font-size:12px;border-radius:9px}
+.stat,.feature,.quote,.brand{transition:transform .3s ease,box-shadow .3s ease}
+.stat:hover,.feature:hover,.quote:hover{transform:translateY(-6px);box-shadow:0 18px 38px rgba(16,43,70,.11)}
+.brand{transition:transform .3s ease,box-shadow .3s ease}
+.brand:hover{transform:translateY(-7px);box-shadow:0 18px 30px #102b4620}
+.cta{position:relative;overflow:hidden;animation:fadeLift .8s both}
+.cta:after{content:"";position:absolute;width:220px;height:220px;border:1px solid #ffffff20;border-radius:50%;right:8%;top:-110px;animation:orbitGlow 12s linear infinite;pointer-events:none}
+footer a{transition:color .25s,transform .25s}footer a:hover{color:#63d8cb;transform:translateX(3px)}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-38px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(38px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fadeLift{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes photoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes floatBob{0%,100%{translate:0 0}50%{translate:0 -8px}}
+@keyframes softPulse{0%,100%{box-shadow:0 0 0 0 rgba(19,184,166,0)}50%{box-shadow:0 0 0 7px rgba(19,184,166,.08)}}
+@keyframes heroGlow{from{opacity:.55;transform:scale(1)}to{opacity:1;transform:scale(1.04)}}
+@keyframes orbitGlow{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@media(max-width:700px){.hero{background-position:60% center}.service-body{padding:12px}.service-body h3{font-size:15px}.service-body p{font-size:12px}.service-meta{font-size:10px}.service-icon{width:65px;height:49px}.hero-image img{animation:none}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+
+/* Homepage service cards: full-width photos, compact content */
+#homeServices .service-card{border-radius:16px;display:flex;flex-direction:column;min-width:0}
+#homeServices .service-top{padding:0;display:block;position:relative;background:#edf5fb!important;min-height:0}
+#homeServices .service-icon{width:100%;height:155px;object-fit:cover;border:0;border-radius:0;transition:transform .55s ease;display:block}
+#homeServices .service-card:hover .service-icon{transform:scale(1.045)}
+#homeServices .service-top{overflow:hidden}
+#homeServices .price{position:absolute;right:10px;top:10px;z-index:1;padding:5px 10px;font-size:12px;box-shadow:0 4px 14px #102b4620}
+#homeServices .service-body{padding:13px 15px 15px}
+#homeServices .service-body h3{font-size:16px;margin-bottom:5px}
+#homeServices .service-body p{font-size:12px;line-height:1.5;min-height:36px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#homeServices .service-meta{margin:10px 0;font-size:11px;gap:6px}
+#homeServices .service-body .btn{font-size:12px;padding:9px 10px;border-radius:9px}
+.feature{overflow:hidden;transition:transform .3s ease,box-shadow .3s ease}
+.feature:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.feature .feature-photo{width:100%;height:115px;object-fit:cover;border-radius:11px;margin-bottom:15px;transition:transform .5s ease}
+.feature:hover .feature-photo{transform:scale(1.035)}
+/* Brand logos remain contained and centered in the brand cards */
+.brand{overflow:hidden}
+.brand .brand-logo{object-fit:contain}
+@media(max-width:700px){
+ #homeServices .service-icon{height:130px}
+ #homeServices .service-body{padding:11px}
+ #homeServices .service-body h3{font-size:14px}
+ #homeServices .service-body p{font-size:11px;min-height:33px}
+ #homeServices .service-meta{font-size:10px;flex-wrap:wrap}
+ #homeServices .service-body .btn{font-size:11px;padding:8px 6px}
+ .feature .feature-photo{height:100px}
+}
+
+
+/* Final fix: Everything Your Car Needs service cards */
+#homeServices .service-card, #allServices .service-card{display:flex;flex-direction:column;height:100%;min-width:0;border-radius:14px;overflow:hidden}
+#homeServices .service-top, #allServices .service-top{position:relative;display:block;padding:0!important;height:145px;min-height:145px;overflow:hidden;background:#edf5fc!important}
+#homeServices .service-icon, #allServices .service-icon{display:block;width:100%!important;max-width:none!important;height:100%!important;min-height:145px;object-fit:cover;object-position:center;border:0;border-radius:0;background:#eef4fa;transition:transform .45s ease}
+#homeServices .service-card:hover .service-icon, #allServices .service-card:hover .service-icon{transform:scale(1.06)}
+#homeServices .price, #allServices .price{position:absolute;right:9px;top:9px;z-index:2;font-size:11px!important;line-height:1.2;padding:6px 9px!important;border-radius:20px;background:rgba(255,255,255,.96);box-shadow:0 3px 12px rgba(10,30,55,.16);white-space:nowrap}
+#homeServices .service-body, #allServices .service-body{display:flex;flex:1;flex-direction:column;padding:12px!important;min-width:0}
+#homeServices .service-body h3, #allServices .service-body h3{font-size:14px!important;line-height:1.3!important;margin:0 0 5px!important}
+#homeServices .service-body p, #allServices .service-body p{font-size:11px!important;line-height:1.45!important;min-height:46px!important;margin:0;color:#62748a}
+#homeServices .service-meta, #allServices .service-meta{font-size:10px!important;line-height:1.35;margin:9px 0!important;gap:6px;flex-wrap:wrap}
+#homeServices .service-body .btn, #allServices .service-body .btn{width:100%;margin-top:auto;padding:8px 7px!important;font-size:10px!important;line-height:1.25;white-space:normal;min-height:32px}
+@media(max-width:700px){#homeServices .service-top,#allServices .service-top{height:130px;min-height:130px}#homeServices .service-icon,#allServices .service-icon{min-height:130px}#homeServices .service-body,#allServices .service-body{padding:10px!important}#homeServices .service-body p,#allServices .service-body p{min-height:48px!important}}
+
+</style>
+
+<style id="compact-service-price-buttons">
+/* Compact price badges and booking buttons in service cards */
+#homeServices .price, #allServices .price {
+  font-size: 9px !important; padding: 3px 6px !important; line-height: 1.15 !important;
+  border-radius: 12px !important; max-width: max-content;
+}
+#homeServices .service-body .btn, #allServices .service-body .btn {
+  width: auto !important; min-height: 0 !important; align-self: flex-start;
+  padding: 6px 9px !important; font-size: 9px !important; line-height: 1.2 !important;
+  border-radius: 7px !important; white-space: nowrap;
+}
+@media (max-width: 520px) {
+  #homeServices .price, #allServices .price {font-size: 8px !important; padding: 3px 5px !important;}
+  #homeServices .service-body .btn, #allServices .service-body .btn {font-size: 9px !important; padding: 6px 8px !important;}
+}
+</style>
+<style id="service-price-only-final">
+/* Keep only the price badge on service-card images; remove the white booking button. */
+#homeServices .service-body .btn, #allServices .service-body .btn { display: none !important; }
+#homeServices .price, #allServices .price { font-size: 10px !important; padding: 4px 7px !important; line-height: 1.1 !important; border-radius: 14px !important; }
+</style>
+<style id="remove-service-booking-buttons-completely">
+/* Keep the price badge only. Completely hide booking buttons inside service cards. */
+#homeServices .service-card .service-body .btn,
+#allServices .service-card .service-body .btn,
+#homeServices .service-card .service-body button,
+#allServices .service-card .service-body button,
+#homeServices .service-card .service-body a,
+#allServices .service-card .service-body a {
+  display: none !important;
+  visibility: hidden !important;
+}
+#homeServices .service-card .price, #allServices .service-card .price {
+  font-size: 11px !important; padding: 4px 7px !important; line-height: 1.1 !important;
+  width: auto !important; min-width: 0 !important; height: auto !important;
+  border-radius: 14px !important;
+}
+</style>
+<style>
+/* Compact sizing pass: reduce oversized content throughout every page */
+html{font-size:14px} body{font-size:13px;line-height:1.5} h1{font-size:clamp(27px,3vw,40px)!important;line-height:1.1!important;letter-spacing:-.8px!important} h2{font-size:clamp(22px,2.5vw,29px)!important;line-height:1.2!important} h3{font-size:15px!important;line-height:1.3!important} p,li,label,input,select,textarea{font-size:12px} .nav{height:58px!important;padding-top:0!important;padding-bottom:0!important}.logo.roadmate-wordmark{font-size:23px!important}.logo.roadmate-wordmark:before{width:32px!important;height:32px!important;font-size:20px!important}.navlinks{gap:17px!important}.navlinks a{font-size:12px!important}.nav>.btn{padding:9px 15px!important;font-size:12px!important}.hero{padding:25px 0 20px!important}.hero-grid{gap:24px!important}.eyebrow{font-size:11px!important;padding:5px 10px!important;margin-bottom:10px!important}.hero h1{font-size:clamp(29px,3.1vw,43px)!important;margin-bottom:12px!important}.hero p{font-size:14px!important;line-height:1.45!important}.hero-actions{margin:13px 0 10px!important;gap:10px!important}.hero-actions .btn{padding:10px 16px!important;font-size:12px!important}.hero-trust span{font-size:11px!important;padding:5px 9px!important}.hero-image{padding:5px!important;border-radius:18px!important}.hero-image img{height:285px!important;border-radius:13px!important}.float-card{min-width:165px!important;padding:9px 11px!important;font-size:11px!important;gap:7px!important}.float-card strong{font-size:12px!important}.float-card small{font-size:10px!important}.float-icon{width:31px!important;height:31px!important}.stats{padding:12px 0 15px!important;gap:9px!important}.stat{padding:10px 12px!important;gap:9px!important}.stat strong{font-size:18px!important}.stat span{font-size:11px!important}.section{padding:32px 0!important}.section-head{margin-bottom:18px!important}.section-head h2{font-size:clamp(22px,2.5vw,29px)!important}.section-head p{font-size:12px!important}.service-grid{gap:13px!important}.service-card{border-radius:12px!important}.service-icon,#homeServices .service-icon{height:115px!important}.price{font-size:10px!important;padding:4px 8px!important}.service-body,#homeServices .service-body{padding:10px 12px!important}.service-body h3,#homeServices .service-body h3{font-size:14px!important;margin-bottom:4px!important}.service-body p,#homeServices .service-body p{font-size:11px!important;line-height:1.4!important;min-height:30px!important}.service-meta,#homeServices .service-meta{font-size:10px!important;margin:7px 0!important}.service-body .btn,#homeServices .service-body .btn{padding:7px 9px!important;font-size:10px!important}.feature-grid{gap:10px!important}.feature{padding:12px!important}.feature .symbol{font-size:19px!important}.feature h3{font-size:13px!important}.feature p{font-size:11px!important}.feature-photo{height:78px!important;margin-bottom:8px!important}.brand{height:78px!important;flex-basis:120px!important;width:120px!important;min-width:120px!important;padding:7px!important}.brand-logo{width:39px!important;height:30px!important}.brand .brand-mark{font-size:10px!important}.brand small{font-size:8px!important}.cta{padding:22px!important}.footer,footer{font-size:11px!important} .footer h3,footer h3{font-size:13px!important}
+@media(max-width:900px){.hero-image img{height:255px!important}.hero-grid{gap:18px!important}.section{padding:27px 0!important}}
+@media(max-width:600px){.nav{height:54px!important}.logo.roadmate-wordmark{font-size:20px!important}.navlinks{gap:10px!important}.navlinks a{font-size:11px!important}.hero{padding:20px 0!important}.hero h1{font-size:30px!important}.hero p{font-size:13px!important}.hero-image img{height:210px!important}.float-card{min-width:0!important;padding:7px!important}.section{padding:25px 0!important}.service-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}.service-icon,#homeServices .service-icon{height:95px!important}.service-body,#homeServices .service-body{padding:8px!important}.service-body h3,#homeServices .service-body h3{font-size:12px!important}.service-body p,#homeServices .service-body p{font-size:10px!important;min-height:28px!important}.service-meta{font-size:9px!important}.service-body .btn{font-size:9px!important;padding:6px 5px!important}.brand{flex-basis:105px!important;width:105px!important;min-width:105px!important}.feature-photo{height:65px!important}}
+</style>
+<style>
+/* MY FNG-inspired homepage visual refresh */
+:root{--navy:#0d2047;--blue:#1167f5;--teal:#11bfa0;--light:#eef7ff;--ink:#13264b;--muted:#58718f;--border:#e0ebf8}
+header{box-shadow:0 3px 18px rgba(16,65,130,.05)}
+.nav{height:68px}.logo.roadmate-wordmark{font-size:29px;letter-spacing:-1.2px;color:#0967b7}.logo.roadmate-wordmark:before{content:'⚙';display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#1269bf;color:#fff;font-size:25px;margin-right:2px}.logo.roadmate-wordmark span{color:#1269bf}.navlinks{gap:25px}.navlinks a{color:#15264a}.navlinks a.active{border-bottom:3px solid var(--blue);padding:23px 0 19px}.nav>.btn{border-radius:14px;padding:12px 22px}
+.hero{position:relative;padding:34px 0 28px;background:radial-gradient(ellipse at 72% 50%,#d7edff 0,transparent 45%),linear-gradient(115deg,#f4faff 0%,#fff 52%,#e9f5ff 100%)}.hero:before,.hero:after{content:'';position:absolute;border:1px solid #d9edff;transform:rotate(35deg);pointer-events:none}.hero:before{width:240px;height:420px;left:-170px;top:40px}.hero:after{width:280px;height:480px;right:-190px;bottom:-180px}.hero-grid{position:relative;z-index:1;grid-template-columns:.92fr 1.08fr;gap:35px}.eyebrow{background:#e3f1ff;border-color:#cce4ff;color:#1269df;padding:6px 13px;margin-bottom:15px}.hero h1{font-size:clamp(37px,4vw,56px);line-height:1.03;letter-spacing:-2px;margin-bottom:18px}.hero h1 em{color:#1267ef}.hero p{font-size:18px;line-height:1.5;max-width:600px}.hero-actions{margin:19px 0 15px}.hero-actions .btn{padding:14px 23px;border-radius:13px}.hero-actions .btn-outline{border:1.5px solid #176bff;color:#0b3b87}.hero-trust{gap:10px}.hero-trust span{padding:7px 12px;border:1px solid #dce9f7;border-radius:30px;background:#fff;color:#17345e;box-shadow:0 3px 10px #123b6b08}.hero-image{padding:7px;background:white;border:1px solid #e5f0fb;border-radius:24px;box-shadow:0 16px 40px #2564a51a}.hero-image img{height:345px;border-radius:17px;object-fit:cover}.float-card{display:flex;align-items:center;gap:9px;padding:13px 15px;border:1px solid #edf2fa;border-radius:16px;min-width:200px;color:#102753}.float-card small{font-size:11px}.float-one{left:18px;bottom:25px}.float-two{right:15px;top:18px}.float-icon{flex-shrink:0;background:#e7f1ff;color:#1267f5;width:38px;height:38px}.stats{gap:12px;padding:16px 0 20px}.stat{display:flex;align-items:center;gap:13px;text-align:left;padding:14px 17px;border-radius:14px;box-shadow:none}.stat strong{font-size:23px;min-width:max-content}.stat span{font-size:12px}.section{padding:48px 0}.section-head{margin-bottom:25px}.section-head .eyebrow{margin-bottom:10px}.section-head h2{font-size:clamp(27px,3vw,35px);margin-bottom:8px}.section-head p{font-size:14px}.section-tint{background:linear-gradient(120deg,#f0f8ff,#f8fbff)}.service-grid{gap:17px}.service-card{border-radius:15px}.service-top{padding:12px 15px}.service-icon{height:90px;width:100%;max-width:160px;object-fit:cover;border-radius:10px}.price{font-size:13px;padding:5px 10px}.service-body{padding:15px}.service-body h3{font-size:17px;margin-bottom:6px}.service-body p{font-size:13px;min-height:38px;line-height:1.5}.service-meta{margin:12px 0;font-size:11px}.service-body .btn{padding:10px;font-size:13px}.feature-grid{gap:12px}.feature{padding:17px;border-radius:14px}.feature .symbol{font-size:24px}.feature h3{font-size:15px}.feature p{font-size:12px}.feature-photo{width:100%;height:100px;object-fit:cover;border-radius:10px;margin-bottom:12px}.brand-grid{margin-top:4px}.brand{height:94px;flex-basis:145px;width:145px;min-width:145px;border-radius:12px;padding:10px;gap:4px}.brand-logo{width:48px;height:38px;object-fit:contain}.brand .brand-mark{font-size:12px;letter-spacing:0}.brand small{font-size:8px}.cta{border-radius:20px;padding:30px}.page.active{animation:appear .45s ease both}.btn{transition:transform .25s,box-shadow .25s,background .25s}.btn:hover{transform:translateY(-3px);box-shadow:0 12px 24px #1267f52b}.service-card,.feature,.brand{transition:transform .3s ease,box-shadow .3s ease}.service-card:hover,.feature:hover{transform:translateY(-5px);box-shadow:0 16px 35px #173d6818}.hero-image img{animation:heroReveal .8s ease both}.float-card{animation:floaty 4s ease-in-out infinite}.float-two{animation-delay:-2s}@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}@keyframes heroReveal{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:24px}.hero-image img{height:320px}.float-one{left:10px}.stats{grid-template-columns:repeat(2,1fr)}.feature-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.nav{height:65px}.logo.roadmate-wordmark{font-size:23px}.logo.roadmate-wordmark:before{width:34px;height:34px;font-size:21px}.nav>.btn{display:none}.hero{padding:28px 0}.hero h1{font-size:38px}.hero p{font-size:15px}.hero-actions{flex-direction:column}.hero-actions .btn{width:100%}.hero-image img{height:245px}.float-card{min-width:0;padding:8px;font-size:11px}.float-icon{width:28px;height:28px}.float-one{bottom:12px}.float-two{top:12px;right:8px}.stats{gap:8px}.stat{padding:10px;gap:8px}.stat strong{font-size:18px}.stat span{font-size:10px}.service-grid{grid-template-columns:1fr}.service-icon{max-width:none;height:150px}.section{padding:38px 0}.brand{flex-basis:125px;width:125px;min-width:125px}.feature-grid{gap:9px}.feature{padding:12px}.feature-photo{height:85px}}
+</style>
+<style id="final-navigation-visual-refresh">
+:root{--nav-shadow:0 12px 30px rgba(13,42,85,.13)}
+html{scroll-behavior:smooth}
+header{position:sticky;top:0;z-index:1000;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid #e4eef9}
+.nav{position:relative;gap:22px}
+.navlinks{display:flex;align-items:center;gap:clamp(12px,2vw,25px)}
+.navlinks>a,.nav-services-link{display:inline-flex;align-items:center;gap:5px;position:relative;text-decoration:none;font-weight:700;font-size:13px;padding:12px 0;transition:color .2s ease}
+.navlinks>a:after,.nav-services-link:after{content:"";position:absolute;left:0;right:100%;bottom:5px;height:2px;background:#1267f5;border-radius:3px;transition:right .22s ease}
+.navlinks>a:hover:after,.navlinks>a.active:after,.nav-services-link:hover:after{right:0}
+.nav-dropdown{position:relative;display:flex;align-items:center;height:100%}
+.dropdown-chevron{font-size:17px;transition:transform .2s ease}
+.nav-dropdown:hover .dropdown-chevron,.nav-dropdown:focus-within .dropdown-chevron{transform:rotate(180deg)}
+.nav-dropdown-menu{position:absolute;top:calc(100% - 2px);left:-18px;width:220px;padding:9px;background:#fff;border:1px solid #e2ecf8;border-radius:14px;box-shadow:var(--nav-shadow);display:grid;gap:2px;opacity:0;visibility:hidden;transform:translateY(10px) scale(.98);transform-origin:top left;transition:opacity .2s ease,transform .2s ease,visibility .2s;z-index:1100}
+.nav-dropdown:hover .nav-dropdown-menu,.nav-dropdown:focus-within .nav-dropdown-menu{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+.nav-dropdown-menu a{display:block;padding:10px 12px;border-radius:8px;color:#17345e;font-size:12px;font-weight:650;text-decoration:none;transition:background .18s,color .18s,padding .18s}
+.nav-dropdown-menu a:hover{background:#edf6ff;color:#1267f5;padding-left:16px}
+/* Service cards now show only their price badge: no white booking button. */
+#homeServices .service-body .btn,#allServices .service-body .btn,#homeServices [data-book],#allServices [data-book]{display:none!important}
+#homeServices .service-body,#allServices .service-body{padding-bottom:14px!important}
+#homeServices .price,#allServices .price{font-size:10px!important;padding:4px 7px!important;border-radius:999px!important;background:#fff!important;color:#1267f5!important;border:1px solid #d9e9ff;box-shadow:0 5px 16px rgba(10,60,130,.15)!important}
+#homeServices .service-card,#allServices .service-card{transform-style:preserve-3d;transition:transform .32s cubic-bezier(.2,.8,.2,1),box-shadow .32s ease,border-color .32s ease;border:1px solid #e5edf7}
+#homeServices .service-card:hover,#allServices .service-card:hover{transform:translateY(-7px) perspective(900px) rotateX(1.2deg);box-shadow:0 18px 38px rgba(16,60,120,.16);border-color:#c9e0ff}
+#homeServices .service-icon,#allServices .service-icon{transition:transform .65s cubic-bezier(.2,.8,.2,1),filter .4s ease}
+#homeServices .service-card:hover .service-icon,#allServices .service-card:hover .service-icon{transform:scale(1.075);filter:saturate(1.12)}
+.feature{transform-style:preserve-3d}.feature:hover{transform:translateY(-6px) perspective(800px) rotateX(1deg)}
+.hero-image{perspective:1000px}.hero-image img{transition:transform .7s ease,filter .7s ease}.hero-image:hover img{transform:scale(1.015) rotateY(-1deg);filter:saturate(1.06)}
+.brand-track{will-change:transform}
+@keyframes navFadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.page.active{animation:navFadeIn .42s ease both}
+@media(max-width:800px){
+ .nav{gap:10px}.navlinks{gap:12px}
+ .nav-dropdown-menu{left:-40px;max-height:65vh;overflow:auto}
+}
+@media(max-width:600px){
+ .navlinks{gap:9px}.navlinks>a,.nav-services-link{font-size:11px}
+ .nav-dropdown-menu{left:-50px;width:190px}
+ .nav-dropdown-menu a{font-size:11px;padding:9px 10px}
+ #homeServices .service-top,#allServices .service-top{height:105px;min-height:105px}
+ #homeServices .service-icon,#allServices .service-icon{min-height:105px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+<style id="final-price-only-guard">
+/* Final service-card rule: keep price badge; hide all booking controls only inside service cards. */
+#homeServices .service-card .service-body .btn,
+#allServices .service-card .service-body .btn,
+#homeServices .service-card .service-body button,
+#allServices .service-card .service-body button,
+#homeServices .service-card .service-body a,
+#allServices .service-card .service-body a { display: none !important; }
+#homeServices .service-card .price,
+#allServices .service-card .price {
+  display: inline-flex !important; align-items: center; justify-content: center;
+  width: auto !important; min-width: 0 !important; height: auto !important;
+  padding: 4px 8px !important; font-size: 10px !important; line-height: 1.2 !important;
+  white-space: nowrap; border-radius: 999px !important;
+  background: #fff !important; color: #1267f5 !important;
+  box-shadow: 0 4px 14px rgba(10, 60, 130, .16) !important;
+}
+@media (max-width: 600px) {
+  .navlinks { display: none; }
+  .navlinks.open { display: flex; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="logo roadmate-wordmark" href="#home" aria-label="RoadMate home">Road<span>Mate</span></a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+    <nav class="navlinks" id="navlinks" aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <div class="nav-dropdown" id="servicesDropdown">
+        <a href="#services" class="nav-services-link" id="servicesDropdownToggle" aria-haspopup="true" aria-expanded="false">Services</a>
+        <div class="nav-dropdown-menu" id="servicesDropdownMenu">
+          <a href="periodic-car-service.html">Periodic Car Service</a>
+          <a href="car-engine-service.html">Car Engine Service</a>
+          <a href="car-ac-service.html">Car AC Service</a>
+          <a href="car-battery-service.html">Car Battery Service</a>
+          <a href="car-brake-service.html">Car Brake Service</a>
+          <a href="car-clutch-service.html">Car Clutch Service</a>
+          <a href="car-tyre-wheel-care.html">Car Tyre &amp; Wheel Care</a>
+          <a href="car-detailing-service.html">Car Detailing Service</a>
+          <a href="car-denting-painting.html">Car Denting &amp; Painting</a>
+          <a href="electrical-battery-service.html">Electrical &amp; Battery Service</a>
+          <a href="suspension-steering-service.html">Suspension &amp; Steering Service</a>
+          <a href="custom-repair.html">Custom Repair</a>
+        </div>
+      </div>
+      <a href="#about">About Us</a>
+      <a href="#roadside">Roadside Help</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-primary nav-book-btn" href="#booking">Book a Service ↗</a>
+  </div>
+</header>
+
+<main>
+<!-- HOME PAGE -->
+<section class="page active" id="home">
+ <div class="hero">
+  <div class="container hero-grid">
+   <div>
+    <span class="eyebrow">✦ SMARTER CAR CARE STARTS HERE</span>
+    <h1>Your Car Deserves <em>Better Care.</em></h1>
+    <p>Book trusted car servicing, repairs and detailing in just a few clicks. Transparent prices, convenient appointments and care you can count on.</p>
+    <div class="hero-actions"><a href="#booking" class="btn btn-primary">Book Your Service ↗</a><a href="#services" class="btn btn-outline">Explore Services →</a></div>
+    <div class="hero-trust"><span>✓ Transparent pricing</span><span>✓ Skilled mechanics</span><span>✓ Easy booking</span></div>
+   </div>
+   <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=1200&q=85" alt="Car being serviced in an automotive workshop">
+    <div class="float-card float-one"><span class="float-icon">✓</span>Quality Car Care<small>Service made convenient</small></div>
+    <div class="float-card float-two"><span class="float-icon">✦</span>Expert Assistance<small>Care for every journey</small></div>
+   </div>
+  </div>
+ </div>
+
+ <div class="container stats">
+  <div class="stat"><strong>8+</strong><span>Service Categories</span></div>
+  <div class="stat"><strong>Easy</strong><span>Online Booking</span></div>
+  <div class="stat"><strong>7 Days</strong><span>Booking Availability</span></div>
+  <div class="stat"><strong>100%</strong><span>Customer Focused</span></div>
+ </div>
+
+ <section class="section section-tint">
+  <div class="container">
+   <div class="section-head"><span class="eyebrow">OUR SERVICES</span><h2>Everything Your Car Needs</h2><p>From routine maintenance to unexpected repairs, find the right service for your vehicle.</p></div>
+   <div class="service-grid" id="homeServices"></div>
+   <div style="text-align:center;margin-top:32px"><a class="btn btn-primary" href="#services">Explore All Services →</a></div>
+  </div>
+ </section>
+
+ <section class="section">
+  <div class="container">
+   <div class="section-head"><span class="eyebrow">WHY ROAD MATE?</span><h2>Car Care Without the Complications</h2><p>A straightforward service experience designed around your time and your vehicle.</p></div>
+   <div class="feature-grid">
+    <div class="feature"><img class="feature-photo" src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=600&q=85" alt="Skilled auto technician at work" loading="lazy"><h3>Skilled Technicians</h3><p>Careful inspections and professional service for your vehicle.</p></div>
+    <div class="feature"><img class="feature-photo" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=85" alt="Clear service pricing and invoice" loading="lazy"><h3>Clear Pricing</h3><p>View indicative service prices before requesting a booking.</p></div>
+    <div class="feature"><img class="feature-photo" src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?auto=format&fit=crop&w=600&q=85" alt="Car ready for a service appointment" loading="lazy"><h3>Flexible Appointments</h3><p>Choose your preferred date and time using our booking form.</p></div>
+    <div class="feature"><img class="feature-photo" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=600&q=85" alt="Convenient vehicle maintenance" loading="lazy"><h3>Convenient Car Care</h3><p>Find maintenance, repair and roadside help options in one place.</p></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="section section-tint">
+  <div class="container">
+   <div class="section-head"><span class="eyebrow">CAR BRANDS</span><h2>Care for Your Kind of Car</h2><p>Explore our demo service options for popular car manufacturers.</p></div>
+   <div class="brand-grid"><div class="brand-track"><div class="brand brand-maruti"><img class="brand-logo" src="https://cdn.simpleicons.org/suzuki/1D4E9E" alt="Maruti Suzuki logo" loading="lazy"><span class="brand-mark">Maruti Suzuki</span></div><div class="brand brand-hyundai"><img class="brand-logo" src="https://cdn.simpleicons.org/hyundai/003B70" alt="Hyundai logo" loading="lazy"><span class="brand-mark">Hyundai</span></div><div class="brand brand-tata"><img class="brand-logo" src="https://cdn.simpleicons.org/tata/1766B1" alt="Tata Motors logo" loading="lazy"><span class="brand-mark">Tata Motors</span></div><div class="brand brand-honda"><img class="brand-logo" src="https://cdn.simpleicons.org/honda/C92332" alt="Honda logo" loading="lazy"><span class="brand-mark">Honda</span></div><div class="brand brand-toyota"><img class="brand-logo" src="https://cdn.simpleicons.org/toyota/D71920" alt="Toyota logo" loading="lazy"><span class="brand-mark">Toyota</span></div><div class="brand brand-mahindra"><img class="brand-logo" src="https://cdn.simpleicons.org/mahindra/C3222A" alt="Mahindra logo" loading="lazy"><span class="brand-mark">Mahindra</span></div><div class="brand brand-kia"><img class="brand-logo" src="https://cdn.simpleicons.org/kia/111111" alt="Kia Motors logo" loading="lazy"><span class="brand-mark">Kia Motors</span></div><div class="brand brand-mg"><img class="brand-logo" src="https://cdn.simpleicons.org/mg/BD2026" alt="MG Motor logo" loading="lazy"><span class="brand-mark">MG Motor</span></div><div class="brand brand-bmw"><img class="brand-logo" src="https://cdn.simpleicons.org/bmw/1765A9" alt="BMW logo" loading="lazy"><span class="brand-mark">BMW</span></div><div class="brand brand-mercedes"><img class="brand-logo" src="https://cdn.simpleicons.org/mercedesbenz/333333" alt="Mercedes-Benz logo" loading="lazy"><span class="brand-mark">Mercedes-Benz</span></div><div class="brand brand-maruti"><img class="brand-logo" src="https://cdn.simpleicons.org/suzuki/1D4E9E" alt="Maruti Suzuki logo" loading="lazy"><span class="brand-mark">Maruti Suzuki</span></div><div class="brand brand-hyundai"><img class="brand-logo" src="https://cdn.simpleicons.org/hyundai/003B70" alt="Hyundai logo" loading="lazy"><span class="brand-mark">Hyundai</span></div><div class="brand brand-tata"><img class="brand-logo" src="https://cdn.simpleicons.org/tata/1766B1" alt="Tata Motors logo" loading="lazy"><span class="brand-mark">Tata Motors</span></div><div class="brand brand-honda"><img class="brand-logo" src="https://cdn.simpleicons.org/honda/C92332" alt="Honda logo" loading="lazy"><span class="brand-mark">Honda</span></div><div class="brand brand-toyota"><img class="brand-logo" src="https://cdn.simpleicons.org/toyota/D71920" alt="Toyota logo" loading="lazy"><span class="brand-mark">Toyota</span></div><div class="brand brand-mahindra"><img class="brand-logo" src="https://cdn.simpleicons.org/mahindra/C3222A" alt="Mahindra logo" loading="lazy"><span class="brand-mark">Mahindra</span></div><div class="brand brand-kia"><img class="brand-logo" src="https://cdn.simpleicons.org/kia/111111" alt="Kia Motors logo" loading="lazy"><span class="brand-mark">Kia Motors</span></div><div class="brand brand-mg"><img class="brand-logo" src="https://cdn.simpleicons.org/mg/BD2026" alt="MG Motor logo" loading="lazy"><span class="brand-mark">MG Motor</span></div><div class="brand brand-bmw"><img class="brand-logo" src="https://cdn.simpleicons.org/bmw/1765A9" alt="BMW logo" loading="lazy"><span class="brand-mark">BMW</span></div><div class="brand brand-mercedes"><img class="brand-logo" src="https://cdn.simpleicons.org/mercedesbenz/333333" alt="Mercedes-Benz logo" loading="lazy"><span class="brand-mark">Mercedes-Benz</span></div></div></div></div>
+  </div>
+ </section>
+
+ <section class="section">
+  <div class="container">
+   <div class="cta"><div><h2>Ready to Give Your Car Some Care?</h2><p>Choose a service and request your preferred appointment today.</p></div><a href="#booking" class="btn btn-teal">Book a Service ↗</a></div>
+  </div>
+ </section>
+
+ <section class="section section-tint">
+  <div class="container">
+   <div class="section-head"><span class="eyebrow">CUSTOMER EXPERIENCE</span><h2>What Great Car Care Should Feel Like</h2><p>Sample testimonials for this frontend demonstration.</p></div>
+   <div class="testimonial-grid">
+    <div class="quote"><div class="stars">★★★★★</div><p>“The booking process was simple, and I could select the service that suited my car.”</p><strong>Rahul P.</strong><small>Sample customer review</small></div>
+    <div class="quote"><div class="stars">★★★★★</div><p>“Having service details and indicative prices in one place makes planning much easier.”</p><strong>Priya S.</strong><small>Sample customer review</small></div>
+    <div class="quote"><div class="stars">★★★★★</div><p>“A clean and convenient way to explore car maintenance options.”</p><strong>Amit K.</strong><small>Sample customer review</small></div>
+   </div>
+  </div>
+ </section>
+</section>
+
+<!-- SERVICES PAGE -->
+<section class="page" id="services">
+ <div class="inner-hero"><div class="container"><div class="breadcrumb"><a href="#home">Home</a> / Services</div><h1>Find the Right Service for Your Car</h1><p>Browse service categories, check indicative prices and continue to the booking form.</p></div></div>
+ <section class="section"><div class="container"><div class="service-grid" id="allServices"></div></div></section>
+ <section class="section section-tint"><div class="container"><div class="cta"><div><h2>Need Help Choosing?</h2><p>Select a service in the booking form and describe your car's issue.</p></div><a href="#booking" class="btn btn-teal">Book Now →</a></div></div></section>
+</section>
+
+<!-- BOOKING PAGE -->
+<section class="page" id="booking">
+ <div class="inner-hero"><div class="container"><div class="breadcrumb"><a href="#home">Home</a> / Booking</div><h1>Book Your Car Service</h1><p>Share your vehicle and appointment details to create a sample booking request.</p></div></div>
+ <section class="section section-tint">
+  <div class="container form-layout">
+   <div class="form-card">
+    <h2>Appointment Details</h2><p>Fields marked with * are required.</p>
+    <form id="bookingForm">
+     <div class="form-grid">
+      <div class="field"><label for="customer">Full Name *</label><input id="customer" name="customer" required placeholder="Enter your name"></div>
+      <div class="field"><label for="phone">Mobile Number *</label><input id="phone" name="phone" type="tel" required pattern="[6-9][0-9]{9}" maxlength="10" placeholder="10-digit mobile number"></div>
+      <div class="field"><label for="email">Email Address</label><input id="email" name="email" type="email" placeholder="you@example.com"></div>
+      <div class="field"><label for="city">City *</label><input id="city" name="city" required placeholder="e.g. Pune"></div>
+      <div class="field"><label for="brand">Car Brand *</label><select id="brand" name="brand" required><option value="">Select brand</option><option>Maruti Suzuki</option><option>Hyundai</option><option>Tata Motors</option><option>Honda</option><option>Toyota</option><option>Mahindra</option><option>Kia</option><option>MG</option><option>BMW</option><option>Mercedes-Benz</option><option>Other</option></select></div>
+      <div class="field"><label for="model">Car Model *</label><input id="model" name="model" required placeholder="e.g. Swift, Nexon"></div>
+      <div class="field"><label for="fuel">Fuel Type *</label><select id="fuel" name="fuel" required><option value="">Select fuel type</option><option>Petrol</option><option>Diesel</option><option>CNG</option><option>Electric</option><option>Hybrid</option></select></div>
+      <div class="field"><label for="serviceSelect">Select Service *</label><select id="serviceSelect" name="service" required><option value="">Choose a service</option></select></div>
+      <div class="field"><label for="date">Preferred Date *</label><input id="date" name="date" type="date" required></div>
+      <div class="field"><label for="time">Preferred Time *</label><select id="time" name="time" required><option value="">Choose a time</option><option>09:00 AM</option><option>10:00 AM</option><option>11:00 AM</option><option>12:00 PM</option><option>02:00 PM</option><option>03:00 PM</option><option>04:00 PM</option><option>05:00 PM</option><option>06:00 PM</option></select></div>
+      <div class="field full"><label for="address">Pickup / Service Address *</label><input id="address" name="address" required placeholder="Enter your address and area"></div>
+      <div class="field full"><label for="notes">Additional Details</label><textarea id="notes" name="notes" placeholder="Describe the problem or any specific requirements"></textarea></div>
+     </div>
+     <button type="submit" class="btn btn-primary form-submit">Create Booking Request →</button>
+     <div id="bookingNotice" class="notice" role="status"></div>
+    </form>
+   </div>
+   <aside>
+    <div class="side-card"><h3>What Happens Next?</h3><p>01 · Submit your appointment details.</p><p>02 · Review the sample booking confirmation.</p><p>03 · In a real system, the garage would confirm availability and pricing.</p></div>
+    <div class="side-card light"><h3>Before You Book</h3><p>Prices shown are indicative demo prices. Final costs and appointment availability require confirmation from a service provider.</p><p>🔒 This demo does not send your details to a server.</p></div>
+   </aside>
+  </div>
+ </section>
+</section>
+
+<!-- ABOUT PAGE -->
+<section class="page" id="about">
+ <div class="inner-hero"><div class="container"><div class="breadcrumb"><a href="#home">Home</a> / About Us</div><h1>Making Car Care Simpler</h1><p>Our concept is built around convenient service discovery, clear information and a smoother customer experience.</p></div></div>
+ <section class="section"><div class="container about-grid">
+  <img src="https://images.unsplash.com/photo-1486006920555-c77dcf18193c?auto=format&fit=crop&w=1000&q=85" alt="Automotive repair workshop">
+  <div><span class="eyebrow">ABOUT ROADMATE</span><h2>A Better Way to Maintain Your Vehicle</h2><p>RoadMate AutoCare is a car-service website concept that brings essential vehicle maintenance options into one convenient place.</p><p>Our goal is to make it easier for customers to explore service options and request an appointment without unnecessary complexity.</p><ul class="check-list"><li>Simple online service discovery</li><li>Indicative prices shown upfront</li><li>Convenient appointment request form</li><li>Access to roadside assistance information</li></ul><a href="#booking" class="btn btn-primary">Book a Service →</a></div>
+ </div></section>
+ <section class="section section-tint"><div class="container"><div class="section-head"><h2>Our Service Principles</h2><p>A customer-first approach to vehicle care.</p></div><div class="feature-grid"><div class="feature"><div class="symbol">◎</div><h3>Trust</h3><p>Clear service information and honest communication.</p></div><div class="feature"><div class="symbol">◷</div><h3>Convenience</h3><p>Appointment requests that fit your schedule.</p></div><div class="feature"><div class="symbol">✳</div><h3>Quality</h3><p>Vehicle care focused on maintenance and safety.</p></div><div class="feature"><div class="symbol">↗</div><h3>Support</h3><p>Easy ways to find help and get in touch.</p></div></div></div></section>
+</section>
+
+<!-- ROADSIDE PAGE -->
+<section class="page" id="roadside">
+ <div class="inner-hero"><div class="container"><div class="breadcrumb"><a href="#home">Home</a> / Roadside Assistance</div><h1>Help When Your Journey Stops</h1><p>Explore common roadside assistance options. This frontend demo does not dispatch emergency or towing services.</p></div></div>
+ <section class="section"><div class="container">
+  <div class="assist-box"><h2>Need Roadside Assistance?</h2><p>Choose the type of help you need. You can continue to the contact page to prepare an enquiry.</p><a href="#contact" class="btn btn-teal">Request Assistance Information →</a></div>
+  <div class="assist-options">
+   <div class="assist-option"><span>🔋</span><h3>Battery Jump-Start</h3><p>For a vehicle that will not start because of a flat battery.</p><a href="#contact" class="btn btn-outline">Enquire →</a></div>
+   <div class="assist-option"><span>🛞</span><h3>Flat Tyre Support</h3><p>Help with tyre replacement or puncture-related issues.</p><a href="#contact" class="btn btn-outline">Enquire →</a></div>
+   <div class="assist-option"><span>🚚</span><h3>Towing Assistance</h3><p>Explore towing options if your car cannot be driven safely.</p><a href="#contact" class="btn btn-outline">Enquire →</a></div>
+   <div class="assist-option"><span>⛽</span><h3>Fuel Assistance</h3><p>Ask about fuel delivery availability in your area.</p><a href="#contact" class="btn btn-outline">Enquire →</a></div>
+   <div class="assist-option"><span>🔧</span><h3>Minor Breakdown</h3><p>Explore help for common roadside mechanical issues.</p><a href="#contact" class="btn btn-outline">Enquire →</a></div>
+   <div class="assist-option"><span>🔑</span><h3>Lockout Support</h3><p>Ask about assistance if your keys are locked inside your car.</p><a href="#contact" class="btn btn-outline">Enquire →</a></div>
+  </div>
+ </div></section>
+</section>
+
+<!-- CONTACT PAGE -->
+<section class="page" id="contact">
+ <div class="inner-hero"><div class="container"><div class="breadcrumb"><a href="#home">Home</a> / Contact</div><h1>Let's Talk Car Care</h1><p>Have a question about a service or need help choosing the right option? Send a demo enquiry.</p></div></div>
+ <section class="section section-tint"><div class="container contact-grid">
+  <div><div class="contact-item"><h3>📍 Location</h3><p>Enter your actual garage address before publishing the website.</p></div><div class="contact-item"><h3>📞 Phone</h3><p>Replace with your business contact number.</p></div><div class="contact-item"><h3>✉️ Email</h3><p>Replace with your business email address.</p></div><div class="contact-item"><h3>🕒 Working Hours</h3><p>Monday – Sunday · 9 AM – 8 PM (sample hours)</p></div></div>
+  <div class="form-card"><h2>Send an Enquiry</h2><p>Fill in your details and select a topic.</p>
+   <form id="contactForm"><div class="form-grid">
+    <div class="field"><label for="contactName">Full Name *</label><input id="contactName" name="name" required placeholder="Your name"></div>
+    <div class="field"><label for="contactPhone">Phone Number *</label><input id="contactPhone" name="phone" required type="tel" pattern="[6-9][0-9]{9}" maxlength="10" placeholder="10-digit number"></div>
+    <div class="field full"><label for="contactEmail">Email *</label><input id="contactEmail" name="email" type="email" required placeholder="you@example.com"></div>
+    <div class="field full"><label for="topic">Enquiry Topic *</label><select id="topic" name="topic" required><option value="">Select a topic</option><option>Car Servicing</option><option>Repair</option><option>Booking Support</option><option>Roadside Assistance</option><option>Other</option></select></div>
+    <div class="field full"><label for="message">Your Message *</label><textarea id="message" name="message" required placeholder="How can we help?"></textarea></div>
+   </div><button class="btn btn-primary form-submit" type="submit">Prepare Enquiry →</button><div id="contactNotice" class="notice" role="status"></div></form>
+  </div>
+ </div></section>
+ <section class="section"><div class="container"><div class="section-head"><h2>Frequently Asked Questions</h2><p>Some quick answers about using the demo website.</p></div>
+  <div class="faq"><details><summary>How can I book a service?</summary><p>Open Book a Service, fill in the required vehicle and appointment details, then submit the form.</p></details><details><summary>Are the displayed prices final?</summary><p>No. These are sample prices for a frontend demonstration. A real garage must confirm its pricing.</p></details><details><summary>Does this website accept online payments?</summary><p>No. Online payment processing is not included in this frontend-only version.</p></details><details><summary>Will the garage receive my booking?</summary><p>No. The demo shows a confirmation in your browser only. A backend or booking service integration is needed to send actual requests.</p></details></div>
+ </div></section>
+</section>
+</main>
+
+<footer>
+ <div class="container">
+  <div class="footer-grid">
+   <div><a class="logo roadmate-wordmark footer-wordmark" href="#home">Road<span>Mate</span></a><p>Your convenient starting point for car servicing, maintenance, repairs and roadside assistance.</p><div class="footer-contact"><a href="mailto:hello@roadmateautocare.example">hello@roadmateautocare.example</a><a href="tel:+919876543210">+91 98765 43210</a><span>Mon–Sat: 9:00 AM – 7:00 PM</span><span>Sunday: 10:00 AM – 4:00 PM</span></div></div>
+   <div><h3>Explore</h3><div class="footer-links"><a href="#home">Home</a><a href="#about">About Us</a><a href="#services">All Services</a><a href="#contact">Contact</a></div></div>
+   <div><h3>Car Services</h3><div class="footer-links"><a href="#services">Periodic Service</a><a href="#services">Engine Service</a><a href="#services">AC Service</a><a href="#services">Car Detailing</a></div></div>
+   <div><h3>Get Started</h3><div class="footer-links"><a href="#booking">Book an Appointment</a><a href="#roadside">Roadside Assistance</a><a href="#contact">Send an Enquiry</a></div></div>
+  </div>
+  <div class="footer-bottom"><span>© <span id="year"></span> RoadMate AutoCare. Frontend demo.</span><span>Built for a better car-care experience.</span></div>
+ </div>
+</footer>
+
+<button class="chat-btn" id="chatBtn" aria-label="Open quick links">＋</button>
+<div class="chat-panel" id="chatPanel"><div class="chat-head">RoadMate Quick Help</div><div class="chat-body"><p>What would you like to do?</p><a href="#booking">Book a car service →</a><a href="#services">Explore services →</a><a href="#roadside">Roadside assistance →</a><a href="#contact">Contact us →</a></div></div>
+
+<script>
+const services = [
+ {name:"Periodic Car Service",image:"https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=700&q=85",price:2999,time:"2–3 hours",desc:"Routine maintenance, oil check and a comprehensive vehicle inspection."},
+ {name:"Engine Service",image:"https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=700&q=85",price:2499,time:"1–3 hours",desc:"Engine inspection, diagnostic checks and repair assessment."},
+ {name:"Car AC Service",image:"https://images.unsplash.com/photo-1632823471565-1ecdf5c5a4a4?auto=format&fit=crop&w=700&q=85",price:1299,time:"1–2 hours",desc:"Air conditioning inspection and cooling performance checks."},
+ {name:"Car Battery Service",image:"https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=700&q=85",price:899,time:"30–60 min",desc:"Battery health testing, starting system checks and replacement assessment."},
+ {name:"Brake Service",image:"https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=700&q=85",price:1499,time:"1–2 hours",desc:"Brake inspection, brake pad assessment and safety checks."},
+ {name:"Tyre & Wheel Care",image:"https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=700&q=85",price:699,time:"45–90 min",desc:"Tyre inspection, wheel balancing and alignment assessment."},
+ {name:"Car Detailing",image:"https://images.unsplash.com/photo-1607860108855-64acf2078ed9?auto=format&fit=crop&w=700&q=85",price:2999,time:"2–4 hours",desc:"Interior cleaning, exterior detailing and finish care."},
+ {name:"Denting & Painting",image:"https://images.unsplash.com/photo-1613214150384-1f7a1a3b3e6b?auto=format&fit=crop&w=700&q=85",price:3999,time:"1–3 days",desc:"Bodywork inspection and paint repair estimate."},
+ {name:"Electrical Service",image:"https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=700&q=85",price:999,time:"1–2 hours",desc:"Vehicle electrical diagnostics and wiring checks."},
+ {name:"Suspension & Steering",image:"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=700&q=85",price:1499,time:"2–4 hours",desc:"Suspension, steering and ride-quality inspection."}
+];
+
+function renderServices(target, limit=services.length){
+ const el=document.getElementById(target);
+ if(!el)return;
+ el.innerHTML=services.slice(0,limit).map((s,i)=>`
+  <article class="service-card">
+   <div class="service-top"><img class="service-icon" src="${s.image}" alt="${s.name}" loading="lazy"><span class="price">₹${s.price.toLocaleString("en-IN")}+</span></div>
+   <div class="service-body">
+    <h3>${s.name}</h3><p>${s.desc}</p>
+    <div class="service-meta"><span>◷ ${s.time}</span><span>✓ Inspection</span></div>
+   </div>
+  </article>`).join("");
+}
+renderServices("homeServices",6);
+renderServices("allServices");
+
+const serviceSelect=document.getElementById("serviceSelect");
+services.forEach(s=>{
+ const opt=document.createElement("option");
+ opt.value=s.name;
+ opt.textContent=`${s.name} — ₹${s.price.toLocaleString("en-IN")}+`;
+ serviceSelect.appendChild(opt);
+});
+
+function navigate(){
+ let page=location.hash.replace("#","")||"home";
+ if(!document.getElementById(page))page="home";
+ document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===page));
+ document.querySelectorAll(".navlinks a").forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+page));
+ document.getElementById("navlinks").classList.remove("open");
+ document.getElementById("chatPanel").classList.remove("open");
+ window.scrollTo({top:0,behavior:"instant"});
+}
+window.addEventListener("hashchange",navigate);
+document.getElementById("menuBtn").addEventListener("click",()=>{
+ document.getElementById("navlinks").classList.toggle("open");
+});
+document.addEventListener("click",e=>{
+ const b=e.target.closest("[data-book]");
+ if(b){
+  serviceSelect.value=services[Number(b.dataset.book)].name;
+  location.hash="booking";
+ }
+});
+document.getElementById("chatBtn").addEventListener("click",()=>{
+ document.getElementById("chatPanel").classList.toggle("open");
+});
+
+const dateInput=document.getElementById("date");
+const today=new Date();
+const localDate=new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);
+dateInput.min=localDate;
+document.getElementById("year").textContent=new Date().getFullYear();
+
+document.getElementById("bookingForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ if(!e.target.reportValidity())return;
+ const f=new FormData(e.target);
+ const reference="RM-"+Date.now().toString().slice(-8);
+ const notice=document.getElementById("bookingNotice");
+ notice.innerHTML=`
+  <h3>✓ Demo Booking Created</h3>
+  <p><strong>Reference:</strong> ${reference}</p>
+  <p><strong>Customer:</strong> ${escapeText(f.get("customer"))}</p>
+  <p><strong>Vehicle:</strong> ${escapeText(f.get("brand"))} ${escapeText(f.get("model"))}</p>
+  <p><strong>Service:</strong> ${escapeText(f.get("service"))}</p>
+  <p><strong>Appointment:</strong> ${escapeText(f.get("date"))} at ${escapeText(f.get("time"))}</p>
+  <p>This is a browser-only demo. No garage has received this booking.</p>
+  <button class="btn btn-outline" type="button" id="printBooking">Print Confirmation</button>`;
+ notice.classList.add("show");
+ document.getElementById("printBooking").addEventListener("click",()=>window.print());
+ notice.scrollIntoView({behavior:"smooth",block:"center"});
+});
+
+document.getElementById("contactForm").addEventListener("submit",e=>{
+ e.preventDefault();
+ if(!e.target.reportValidity())return;
+ const f=new FormData(e.target);
+ const notice=document.getElementById("contactNotice");
+ notice.textContent=`Thank you, ${f.get("name")}. Your enquiry has been prepared in this demo. It has not been sent to a business.`;
+ notice.classList.add("show");
+});
+
+function escapeText(value){
+ const el=document.createElement("span");
+ el.textContent=String(value??"");
+ return el.innerHTML;
+}
+navigate();
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+/* Replace the homepage copy with the requested MY FNG-style platform messaging. */
+document.addEventListener('DOMContentLoaded',()=>{
+ const title=document.querySelector('#home .hero h1');
+ if(title) title.innerHTML='India’s First <em>AI-Powered Car</em> Service Booking Platform';
+ const desc=document.querySelector('#home .hero p');
+ if(desc) desc.textContent='Verified garages, photo & video updates, transparent pricing, genuine parts and warranty - all managed by MY FNG.';
+ const actions=document.querySelectorAll('#home .hero-actions .btn');
+ if(actions[0]) actions[0].textContent='Book Service Now →';
+ if(actions[1]) actions[1].textContent='Book via MISA AI';
+ const trust=document.querySelector('#home .hero-trust');
+ if(trust) trust.innerHTML='<span>●　648 Active Now</span><span>⚠　Only 20 slots left today!</span>';
+ const floating=document.querySelectorAll('#home .float-card');
+ if(floating[0]) floating[0].innerHTML='<span class="float-icon">✦</span><span>AI BOOKING SUGGESTION<small>Recommended Service Package</small></span>';
+ if(floating[1]) floating[1].innerHTML='<span class="float-icon">✓</span><span>SERVICE PROGRESS<small>Live Updates Enabled</small></span>';
+ const statCards=document.querySelectorAll('#home .stats .stat');
+ const statData=[['⌂','Free Pickup & Drop','Doorstep convenience included'],['♧','100+ Workshops','Strong, growing partner network'],['⬡','Service Warranty','1000 km or 1 month coverage'],['◷','Same-Day Service','Available for most services']];
+ statCards.forEach((el,i)=>{if(statData[i])el.innerHTML='<strong>'+statData[i][0]+'</strong><span><b>'+statData[i][1]+'</b><br>'+statData[i][2]+'</span>'});
+ const heads=document.querySelectorAll('#home .section-head');
+ if(heads[2]){heads[2].querySelector('.eyebrow').textContent='OUR TRUSTED CAR BRANDS';heads[2].querySelector('h2').textContent='We Service All Major Car Brands';heads[2].querySelector('p').textContent="From Maruti to Mercedes, we've got you covered"}
+ document.title='MY FNG | AI-Powered Car Service Booking Platform';
+});
+</script>
+
+
+
+<script id="final-slides-and-polish">
+document.addEventListener('DOMContentLoaded',()=>{
+ // Real automotive workshop photos rotate in the hero as a gentle slideshow.
+ const heroImg=document.querySelector('#home .hero-image img');
+ if(heroImg){
+  const slides=[
+   'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=1200&q=85',
+   'https://images.unsplash.com/photo-1486006920555-c77dcf18193c?auto=format&fit=crop&w=1200&q=85',
+   'https://images.unsplash.com/photo-1504222490345-c075b6008014?auto=format&fit=crop&w=1200&q=85'
+  ];
+  let slide=0;
+  heroImg.style.transition='opacity .35s ease, transform .65s ease';
+  window.setInterval(()=>{
+   slide=(slide+1)%slides.length;
+   heroImg.style.opacity='.35';
+   window.setTimeout(()=>{heroImg.src=slides[slide];heroImg.onload=()=>{heroImg.style.opacity='1'};},260);
+  },6500);
+ }
+ // Give service links a useful dropdown destination while preserving existing page routing.
+ document.querySelectorAll('.nav-dropdown-menu a[href="#services"]').forEach(a=>a.addEventListener('click',()=>{
+  const page=document.getElementById('services');
+  if(page) setTimeout(()=>page.scrollIntoView({behavior:'smooth',block:'start'}),80);
+ }));
+ // Ensure generated cards never reintroduce their white booking CTA.
+ document.querySelectorAll('#homeServices .service-body .btn,#allServices .service-body .btn').forEach(b=>b.remove());
+});
+</script>
+
+
+
+
+
+<style id="actual-navbar-dropdown-fix">
+/* FINAL NAVBAR FIX: Desktop opens instantly and stays open while choosing a service; mobile opens on tap; no arrow icon. */
+header{z-index:2000}
+.nav{position:relative;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.navlinks{display:flex;align-items:center;gap:clamp(12px,1.8vw,24px)}
+.navlinks>a,.nav-services-link{display:inline-flex;align-items:center;position:relative;text-decoration:none;font-weight:700;font-size:13px;padding:12px 0;transition:color .2s ease;cursor:pointer}
+.nav-dropdown{position:relative;display:flex;align-items:center;height:100%}
+.nav-dropdown-menu{position:absolute;top:100%;left:-12px;z-index:2100;display:none;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 10px;width:560px;max-width:min(92vw,560px);max-height:none;overflow:visible;padding:12px 10px;background:#fff;border:1px solid #e7eaf0;border-radius:16px;box-shadow:0 12px 32px rgba(20,35,60,.12)}
+.nav-dropdown.open .nav-dropdown-menu{display:grid}
+.nav-dropdown-menu a{display:flex;align-items:center;min-height:36px;padding:7px 12px;border:0!important;border-bottom:0!important;border-radius:8px;color:#414957;font-size:16px;font-weight:400;line-height:1.25;white-space:normal;text-decoration:none;background:transparent;transition:background .18s ease,color .18s ease}
+.nav-dropdown-menu a:hover,.nav-dropdown-menu a:focus{background:#f4f7fb;color:#1267f5;outline:none}
+@media(max-width:760px){
+ .nav{height:65px!important;gap:10px}
+ .menu-btn{display:block;flex:0 0 auto}
+ .navlinks{display:none;position:absolute;top:100%;left:0;right:0;max-height:calc(100vh - 75px);overflow-y:auto;background:#fff;padding:12px 16px;border:1px solid #e1eaf4;border-radius:0 0 14px 14px;box-shadow:0 14px 30px rgba(13,42,85,.14);align-items:stretch;gap:0;flex-direction:column}
+ .navlinks.open{display:flex}
+ .navlinks>a,.nav-services-link{display:flex;width:100%;align-items:center;justify-content:flex-start;padding:12px 5px!important;border-bottom:1px solid #edf1f6;font-size:14px!important}
+ .nav-dropdown{display:block;width:100%;height:auto}
+ .nav-dropdown-menu{position:fixed;top:72px;left:8px;right:8px;width:auto;max-width:none;max-height:calc(100dvh - 84px);overflow-y:auto;display:none;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 6px;box-shadow:0 12px 32px rgba(20,35,60,.16);border:1px solid #e7eaf0;border-radius:14px;padding:8px;background:#fff}
+ .nav-dropdown.open .nav-dropdown-menu{display:grid}
+ .nav-dropdown-menu a{font-size:13px;min-height:36px;padding:7px 8px;color:#414957;border:0!important;border-bottom:0!important;border-radius:8px;font-weight:400}
+ .nav-dropdown-menu a:hover,.nav-dropdown-menu a:focus{background:#f4f7fb;color:#1267f5}
+ .nav-book-btn{display:none!important}
+}
+/* Service cards show the price badge only; booking buttons remain removed. */
+#homeServices .service-card .service-body .btn,
+#allServices .service-card .service-body .btn,
+#homeServices .service-card .service-body button,
+#allServices .service-card .service-body button{display:none!important}
+</style>
+<script id="actual-navbar-dropdown-fix-js">
+(()=>{
+ const menuButton=document.getElementById('menuBtn');
+ const nav=document.getElementById('navlinks');
+ const dropdown=document.getElementById('servicesDropdown');
+ const dropdownToggle=document.getElementById('servicesDropdownToggle');
+ if(menuButton && nav){
+   menuButton.addEventListener('click',()=>{
+     const opened=nav.classList.toggle('open');
+     menuButton.setAttribute('aria-expanded',String(opened));
+     menuButton.setAttribute('aria-label',opened?'Close navigation menu':'Open navigation menu');
+     menuButton.textContent=opened?'✕':'☰';
+   });
+ }
+ if(dropdown && dropdownToggle){
+   // Desktop: open immediately when the pointer enters Services; mobile remains tap-to-open.
+   dropdown.addEventListener('mouseenter',()=>{if(window.matchMedia('(min-width: 761px)').matches){dropdown.classList.add('open');dropdownToggle.setAttribute('aria-expanded','true')}});
+   dropdown.addEventListener('mouseleave',()=>{if(window.matchMedia('(min-width: 761px)').matches){dropdown.classList.remove('open');dropdownToggle.setAttribute('aria-expanded','false')}});
+   dropdownToggle.addEventListener('click',(event)=>{
+     event.preventDefault();
+     event.stopPropagation();
+     const opened=dropdown.classList.toggle('open');
+     dropdownToggle.setAttribute('aria-expanded',String(opened));
+   });
+   document.addEventListener('click',(event)=>{
+     if(!dropdown.contains(event.target)){
+       dropdown.classList.remove('open');
+       dropdownToggle.setAttribute('aria-expanded','false');
+     }
+   });
+   dropdown.addEventListener('keydown',(event)=>{
+     if(event.key==='Escape'){
+       dropdown.classList.remove('open');
+       dropdownToggle.setAttribute('aria-expanded','false');
+       dropdownToggle.focus();
+     }
+   });
+   dropdown.querySelectorAll('.nav-dropdown-menu a').forEach(link=>{
+     link.addEventListener('click',()=>{
+       dropdown.classList.remove('open');
+       dropdownToggle.setAttribute('aria-expanded','false');
+       if(nav){nav.classList.remove('open')}
+       if(menuButton){menuButton.setAttribute('aria-expanded','false');menuButton.setAttribute('aria-label','Open navigation menu');menuButton.textContent='☰'}
+       const serviceName=link.getAttribute('data-service-name');
+       if(serviceName){
+         const select=document.getElementById('serviceSelect');
+         if(select){select.value=serviceName}
+       }
+     });
+   });
+ }
+ if(nav){
+   nav.querySelectorAll('a:not(.nav-services-link)').forEach(link=>link.addEventListener('click',()=>{
+     nav.classList.remove('open');
+     if(menuButton){menuButton.setAttribute('aria-expanded','false');menuButton.setAttribute('aria-label','Open navigation menu');menuButton.textContent='☰'}
+     if(dropdown){dropdown.classList.remove('open')}
+     if(dropdownToggle){dropdownToggle.setAttribute('aria-expanded','false')}
+   }));
+ }
+})();
+</script>
+</body>
+</html>
